@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Employee Management System</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1 style="color: goldenrod">Employee Management System</h1>
+        <h3><a th:href="@{/create}">Create New Employee</a></h3>
+        <table border="1" cellspacing="2">
+            <thead>
+                <tr>
+                    <th>#Code</th>
+                    <th>Name</th>
+                    <th>Password</th>
+                    <th>Skill</th>
+                    <th>Salary</th>
+                    <th>Activate Login</th>
+                    <th>Department</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="ev : ${employees}">
+                    <td th:text="${ev.employee.code}"></td>
+                    <td th:text="${ev.employee.name}"></td>
+                    <td th:text="${ev.employee.password}"></td>
+                    <td th:text="${ev.employee.skill}"></td>
+                    <td th:text="${ev.employee.salary}"></td>
+                    <td><input type="checkbox" th:checked="${ev.employee.isactive}" disabled="disabled"></td>
+                    <td th:text="${ev.departmentName}"></td>
+                    <td>
+                        <a th:href="@{/delete/{code}(code=${ev.employee.code})}" onclick="return confirm('Are you sure to delete?')">Delete</a>
+                        <a th:href="@{/edit/{code}(code=${ev.employee.code})}" onclick="return confirm('Move to Update page?')">Edit</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3><a th:href="@{/logout}">Logout</a></h3>
+    </body>
+</html>

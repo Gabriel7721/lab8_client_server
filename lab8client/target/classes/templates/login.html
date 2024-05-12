@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Login Page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h3>Login Page</h3>
+        <div th:if="${error}">
+            <p style="color: red;">Invalid Login methods or Your Account is Blocked by Admin...</p>
+        </div>
+        <form th:action="@{/login}" method="post">
+            <table border="1" width="auto" cellspacing="1" cellpadding="1">
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Input</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Code</td>
+                        <td>
+                            <input type="text" name="code" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td>
+                            <input type="password" name="password" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Action</td>
+                        <td>
+                            <input type="submit" value="Login">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <a th:href="@{/create}">Register Now</a>
+        </form>
+    </body>
+</html>
